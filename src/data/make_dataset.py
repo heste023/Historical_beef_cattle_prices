@@ -124,7 +124,7 @@ def reshape_fwfs(fwf_file):
             
             df = pd.concat(dataframe_collection)
         
-    return dataframe_collection
+    return df
 
 
             
