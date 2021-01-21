@@ -4,6 +4,9 @@ Created on Wed Jan 20 09:34:07 2021
 
 @author: jacob.hester
 """
+
+import os
+import os.path as path
 import pandas as pd 
 
 # create empty lists for dataframes and blank line numbers
@@ -16,6 +19,10 @@ def reshape_fwfs(fwf_file):
     '''
         This function reshapes the fixed width files provided by the AL
     agricultural service. 
+    
+    NOTE: Entry point file will need to have two empty lists:
+        1-dataframe_collection = []
+        2-z_blank_line_numbers = []        
       
     '''
     # get total lines
@@ -123,8 +130,17 @@ def reshape_fwfs(fwf_file):
             dataframe_collection.append(df)
             
             df = pd.concat(dataframe_collection)
-        
-    return df
-
-
             
+            # write file to data/processed/ directory
+            script_directory = os.getcwd()
+            output_dir = path.abspath(path.join(script_directory ,"../.."))
+            
+            file_name = os.path.join(
+                output_dir, 'data\\processed\\', str(year_val) + '_prices.csv'
+                )            
+            df.to_csv(file_name)
+        
+# test function --------------------------------------------------------------
+    
+fwf_file = 'C:/Users/jacob.hester/Documents/Python_scripts/Historical_beef_cattle_prices/data/raw/2004AverageCattlePrices.txt'
+reshape_fwfs(fwf_file = fwf_file)
