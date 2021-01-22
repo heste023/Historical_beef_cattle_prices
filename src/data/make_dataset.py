@@ -6,21 +6,23 @@ Created on Wed Jan 20 09:34:07 2021
 """
 
 import os
-import os.path as path
+import glob
+import pathlib 
 import pandas as pd 
 
-# create empty lists for dataframes and blank line numbers
-dataframe_collection = []
-z_blank_line_numbers = []
-
 # loop to work through directory
-def reshape_fwfs(fwf_file):
+def reshape_fwfs(fwf_file, script_directory):
     
     '''
         This function reshapes the fixed width files provided by the AL
     agricultural service. 
     
     '''
+    
+    # create empty lists for dataframes and blank line numbers
+    dataframe_collection = []
+    z_blank_line_numbers = []
+
     # get total lines
     with open(fwf_file) as f:
         file_by_line = f.readlines()
@@ -128,10 +130,39 @@ def reshape_fwfs(fwf_file):
             df = pd.concat(dataframe_collection)
             
             # write file to data/processed/ directory
-            script_directory = os.getcwd()
-            output_dir = path.abspath(path.join(script_directory ,"../.."))
-            
+            output_dir = os.path.abspath(os.path.join(script_directory ,"../.."))
             file_name = os.path.join(
                 output_dir, 'data\\processed\\', str(year_val) + '_prices.csv'
                 )            
-            df.to_csv(file_name)
+            df.to_csv(file_name, index = False)
+         
+def main(): 
+    
+    script_directory = pathlib.Path(__file__).parent
+    raw_files_directory = (
+        os.path.abspath(os.path.join(
+            script_directory,
+            "../..", 
+            'data\\raw\\'
+                )
+            )
+        )
+    raw_files_path = raw_files_directory + '\\*.txt'
+    for f in glob.glob(raw_files_path):
+        print(f)
+        reshape_fwfs(f, script_directory)
+
+if __name__ == '__main__': 
+    main() 
+
+
+    
+    
+            
+
+
+    
+
+    
+
+
