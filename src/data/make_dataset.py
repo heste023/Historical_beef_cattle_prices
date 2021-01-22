@@ -20,10 +20,6 @@ def reshape_fwfs(fwf_file):
         This function reshapes the fixed width files provided by the AL
     agricultural service. 
     
-    NOTE: Entry point file will need to have two empty lists:
-        1-dataframe_collection = []
-        2-z_blank_line_numbers = []        
-      
     '''
     # get total lines
     with open(fwf_file) as f:
