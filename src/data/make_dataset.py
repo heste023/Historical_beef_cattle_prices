@@ -139,8 +139,3 @@ def reshape_fwfs(fwf_file):
                 output_dir, 'data\\processed\\', str(year_val) + '_prices.csv'
                 )            
             df.to_csv(file_name)
-        
-# test function --------------------------------------------------------------
-    
-fwf_file = 'C:/Users/jacob.hester/Documents/Python_scripts/Historical_beef_cattle_prices/data/raw/2004AverageCattlePrices.txt'
-reshape_fwfs(fwf_file = fwf_file)
