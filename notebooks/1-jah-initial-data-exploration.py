@@ -44,12 +44,21 @@ sales_per_yr_df = df.groupby(['Year'])['Hd_cnt'].sum()
 sales_per_yr_df = pd.DataFrame(sales_per_yr_df)
 sales_per_yr_df.reset_index(inplace = True)
 sales_per_yr_df.head()
+sales_per_yr_df.dtypes
 alt.renderers.enable('altair_viewer')
 bar = alt.Chart(sales_per_yr_df).mark_bar(size = 30).encode(
-    x = 'Year', 
+    x = alt.X(
+        'Year', 
+        axis = alt.Axis(
+            titleFontSize = 14
+            )
+        ),
     y = alt.Y(
         'Hd_cnt', 
-        axis = alt.Axis(title = 'Head Count')
+        axis = alt.Axis(
+            title = 'Head Count',
+            titleFontSize = 14
+            )
         )
     ).properties(
             title = {
@@ -59,10 +68,14 @@ bar = alt.Chart(sales_per_yr_df).mark_bar(size = 30).encode(
             width = 600
     ).configure_axisY(
         titleAngle = 0,
-        #titleAlign = "left",
-        #titleY=0,
-        titleX=-100,
+        titleX = -100,
+    ).configure_axisX(
+        titleX = 300,
+        titleY = 30
+    ).configure_title(
+        fontSize = 18   
     )
+        
 bar.show()
 
 # look at overall prices compared to sales per year 
