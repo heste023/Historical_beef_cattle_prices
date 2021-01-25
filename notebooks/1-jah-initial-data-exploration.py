@@ -45,14 +45,24 @@ sales_per_yr_df = pd.DataFrame(sales_per_yr_df)
 sales_per_yr_df.reset_index(inplace = True)
 sales_per_yr_df.head()
 alt.renderers.enable('altair_viewer')
-bar = alt.Chart(sales_per_yr_df).mark_bar(size = 20).encode(
+bar = alt.Chart(sales_per_yr_df).mark_bar(size = 30).encode(
     x = 'Year', 
-    y = alt.Y('Hd_cnt', axis = alt.Axis(title = 'Head Count'))
-).properties(
-        title = {
-            "text" : "Overall Sales Per Year",
-            "subtitle" : "Beef Cattle Sales in Alabama"}
+    y = alt.Y(
+        'Hd_cnt', 
+        axis = alt.Axis(title = 'Head Count')
         )
+    ).properties(
+            title = {
+                "text" : "Overall Sales Per Year",
+                "subtitle" : "Beef Cattle Sales in Alabama"
+                },
+            width = 600
+    ).configure_axisY(
+        titleAngle = 0,
+        #titleAlign = "left",
+        #titleY=0,
+        titleX=-100,
+    )
 bar.show()
 
 # look at overall prices compared to sales per year 
