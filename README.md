@@ -3,6 +3,12 @@ Historical_beef_cattle_prices
 
 Back of the napkin analysis of historical beef cattle prices in Alabama since 2004.
 
+Last fall (2020), my family and I lived with my parents for a few months while 
+our new home was being built. My father is a beef cattle farmer and during one of our
+farming conversations we began to wonder what seasonality patterns exist for selling beef
+cattle. This is the first-level analysis, showing that there does appear to be a a time 
+of the year where cattle farmers can get receive higher prices for sales.
+
 Project Organization
 ------------
 
