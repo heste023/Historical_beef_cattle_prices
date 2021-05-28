@@ -13,11 +13,9 @@ Project Organization
 ------------
 
     ├── LICENSE
-    ├── README.md          <- The top-level README for developers using this project.
+    ├── README.md          <- The top-level README.
     ├── data
-    │   ├── external       <- Data from third party sources.
-    │   ├── interim        <- Intermediate data that has been transformed.
-    │   ├── processed      <- Canonical data sets for modeling.
+    │   │   ├── processed  <- Canonical data sets for modeling.
     │   └── raw            <- The original, immutable data dump.
     │
     ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
